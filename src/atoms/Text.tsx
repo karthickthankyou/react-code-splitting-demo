@@ -1,14 +1,22 @@
 import { styled } from "@material-ui/core/styles";
+import { style } from "@material-ui/system";
 import {
   compose,
   spacing,
-  typography,
   sizing,
-  // palette,
+  typography,
+  palette,
+  PaletteProps,
 } from "@material-ui/system";
-
 import Typography from "@material-ui/core/Typography";
 
-export default styled(Typography)(compose(spacing, typography, sizing));
+const colors = style({
+  prop: "colors",
+  cssProperty: "color",
+});
+
+export default styled(Typography)(
+  compose(spacing, sizing, typography, palette, colors)
+);
 
 // const Text = styled(Typography)(spacing);

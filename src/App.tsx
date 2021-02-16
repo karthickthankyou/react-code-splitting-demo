@@ -1,22 +1,47 @@
 import React, { useState } from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Switch from "@material-ui/core/Switch";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import { makeStyles } from "@material-ui/core/styles";
+
 import lightTheme from "./theme/light_theme";
 import darkTheme from "./theme/dark_theme";
 
 import Text from "./atoms/Text";
 
+// https://blog.bitsrc.io/mui-system-will-make-your-life-easier-410f7d639a88
+
+const useStyles = makeStyles((theme) => ({
+  "p-1": {
+    padding: theme.spacing(8),
+  },
+}));
+
 function App() {
+  const theme = useTheme();
+  console.log(theme, "theme");
+
+  const classes = useStyles();
   const [darkMode, setDarkMode] = useState(false);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <Box bgcolor="grey.900" color="grey.100">
+      <Box className={classes["p-1"]}>padding 1</Box>
+      <Box bgcolor="grey.800" color="grey.100">
+        <Text colors={theme.palette.grey[100]}>Primary 700</Text>
+        <Text
+          display="inline"
+          letterSpacing={1}
+          lineHeight={2}
+          textAlign="right"
+          p={7}
+        >
+          Sample Text
+        </Text>
         <Switch
           checked={darkMode}
           onChange={() => setDarkMode((darkMode) => !darkMode)}
@@ -39,13 +64,15 @@ function App() {
         </Text>
       </Box> */}
 
-          <Box color="text.primary">Text Primary</Box>
-          <Text>Text Secondary</Text>
+          <Box color="primary.100" m={6}>
+            Text Primary
+          </Box>
+          <Box color="primary.300"></Box>
 
           <Button variant="contained" color="primary">
             Primary
           </Button>
-          <Text>Text Primary</Text>
+
           <Button color="secondary" variant="contained">
             Secondary
           </Button>
@@ -64,7 +91,6 @@ function App() {
           <Box color="text.secondary">text.secondary</Box>
           <Box color="text.disabled">text.disabled</Box>
 
-          <Text fontWeight="100">Font weight Light</Text>
           <Text>Color text</Text>
           <TextField
             label="Name"

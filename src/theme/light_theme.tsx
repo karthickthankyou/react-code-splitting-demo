@@ -14,7 +14,6 @@ import { commonTheme } from "./common_theme";
 const theme = createMuiTheme({
   ...commonTheme,
   /**Spacing */
-  spacing: [0, 1, 2, 4, 8, 16, 24, 32, 48, 72, 120],
 
   palette: {
     type: "light",
